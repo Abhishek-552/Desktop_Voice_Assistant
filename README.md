@@ -1,1 +1,3 @@
 # Desktop_Voice_Assistant
+This is a Python-based voice assistant project named Jarvis, designed to perform a variety of tasks using voice commands. It leverages libraries like pyttsx3 for text-to-speech conversion, speech_recognition for processing user voice input, and wikipedia for fetching information. Jarvis can open popular websites like YouTube, Google, Chrome, and Spotify, play music from a specified directory, tell the current time, and even access the system camera using OpenCV. The assistant greets the user based on the time of day and continuously listens for commands in a conversational loop. It's a simple yet powerful desktop assistant ideal for learning about voice automation, real-time interaction, and Python scripting.
+
