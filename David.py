@@ -7,12 +7,12 @@ import os
 import cv2
 import pyautogui
 import pygetwindow as gw
-import pyautogui
 import time
 import psutil
 import pyjokes
+import screen_brightness_control as sbc
 
-engine = pyttsx3.init('sapi5')
+engine = pyttsx3.init('sapi5')    
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
@@ -116,13 +116,13 @@ def activeMode():
             webbrowser.open(url)
 
         elif 'close browser' in query:
-         speak("Closing Chrome browser")
-         os.system("taskkill /im chrome.exe /f")
+            speak("Closing Chrome browser")
+            os.system("taskkill /im chrome.exe /f")
 
         elif 'close tab' in query:
-         speak("Closing current tab")
-         time.sleep(1)  
-         pyautogui.hotkey('ctrl', 'w')  
+            speak("Closing current tab")
+            time.sleep(1)
+            pyautogui.hotkey('ctrl', 'w')
 
         elif 'close music' in query:
             speak("Closing music player")
@@ -158,11 +158,89 @@ def activeMode():
             os.system("taskkill /im cmd.exe /f")
             os.system("taskkill /im calc.exe /f")
 
+        elif 'increase volume' in query or 'volume up' in query:
+            speak("Increasing volume")
+            for _ in range(5):
+                pyautogui.press("volumeup")
+
+        elif 'decrease volume' in query or 'volume down' in query:
+            speak("Decreasing volume")
+            for _ in range(5):
+                pyautogui.press("volumedown")
+
+        elif 'mute volume' in query or 'mute sound' in query:
+            speak("Muting volume")
+            pyautogui.press("volumemute")
+
+        elif 'unmute volume' in query or 'unmute sound' in query:
+            speak("Unmuting volume")
+            pyautogui.press("volumemute")
+
+        elif 'set volume to' in query:
+            try:
+                level = int([word for word in query.split() if word.isdigit()][0])
+                if 0 <= level <= 100:
+                    speak(f"Setting volume to {level} percent")
+                    for _ in range(50):
+                        pyautogui.press("volumedown")
+                    for _ in range(level // 2):
+                        pyautogui.press("volumeup")
+                else:
+                    speak("Please provide a number between 0 and 100")
+            except:
+                speak("Sorry, I couldn't understand the volume level.")
+
+        elif 'increase brightness' in query:
+            try:
+                current = sbc.get_brightness(display=0)[0]
+                new_brightness = min(current + 20, 100)
+                sbc.set_brightness(new_brightness)
+                speak(f"Increasing brightness to {new_brightness} percent")
+            except:
+                speak("Failed to change brightness")
+
+        elif 'decrease brightness' in query:
+            try:
+                current = sbc.get_brightness(display=0)[0]
+                new_brightness = max(current - 20, 0)
+                sbc.set_brightness(new_brightness)
+                speak(f"Decreasing brightness to {new_brightness} percent")
+            except:
+                speak("Failed to change brightness")
+
+        elif 'set brightness ' in query:
+            try:
+                level = int([word for word in query.split() if word.isdigit()][0])
+                if 0 <= level <= 100:
+                    sbc.set_brightness(level)
+                    speak(f"Setting brightness to {level} percent")
+                else:
+                    speak("Please provide a number between 0 and 100")
+            except:
+                speak("Sorry, I couldn't understand the brightness level.")
+
+        elif 'check brightness' in query or 'brightness level' in query:
+            try:
+                level = sbc.get_brightness(display=0)[0]
+                speak(f"The current brightness level is {level} percent")
+            except:
+                speak("Unable to retrieve brightness level")
+
         elif 'battery status' in query or 'check battery' in query:
             battery = psutil.sensors_battery()
             percent = battery.percent
             plugged = "charging" if battery.power_plugged else "not charging"
             speak(f"Battery is at {percent} percent and is currently {plugged}")
+
+        elif 'open file manager' in query or 'open explorer' in query:
+            speak("Opening File Manager")
+            os.system("explorer")
+
+        elif 'close file manager' in query or 'close explorer' in query:
+            speak("Closing File Manager")
+            os.system("taskkill /f /im explorer.exe")
+            time.sleep(1)
+            os.system("start explorer.exe")
 
         elif 'lock screen' in query or 'lock the screen' in query:
             speak("Locking the screen")
@@ -176,15 +254,13 @@ def activeMode():
             speak("Shutting down the system")
             os.system("shutdown /s /t 1")
 
-
         elif 'stop listening' in query or 'go to sleep' in query:
             speak("Going to sleep. Say 'start listening' when you need me.")
             break
-        
-        elif 'tell me a joke' in query:
-           joke = pyjokes.get_joke()
-           speak(joke)
 
+        elif 'tell me a joke' in query:
+            joke = pyjokes.get_joke()
+            speak(joke)
 
         elif 'exit' in query or 'quit' in query:
             speak("Okay sir, shutting down. Have a great day!")
