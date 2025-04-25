@@ -12,7 +12,7 @@ import psutil
 import pyjokes
 import screen_brightness_control as sbc
 
-engine = pyttsx3.init('sapi5')    
+engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
@@ -105,6 +105,17 @@ def activeMode():
             cap.release()
             cv2.destroyAllWindows()
 
+        elif 'take a note' in query or 'note this' in query:
+            speak("What should I write, sir?")
+            note = takeCommand()
+            with open("DavidNotes.txt", "a") as f:
+                f.write(f"{datetime.datetime.now()}: {note}\n")
+            speak("Note saved.")
+
+        elif 'show my notes' in query or 'open my notes' in query:
+            speak("Opening your notes")
+            os.startfile("DavidNotes.txt")
+
         elif 'search on google' in query or 'google' in query:
             if 'search' in query and 'on google' in query:
                 search_query = query.replace("search", "").replace("on google", "").strip()
@@ -121,7 +132,6 @@ def activeMode():
 
         elif 'close tab' in query:
             speak("Closing current tab")
-            time.sleep(1)
             pyautogui.hotkey('ctrl', 'w')
 
         elif 'close music' in query:
@@ -208,7 +218,7 @@ def activeMode():
             except:
                 speak("Failed to change brightness")
 
-        elif 'set brightness ' in query:
+        elif 'set brightness' in query:
             try:
                 level = int([word for word in query.split() if word.isdigit()][0])
                 if 0 <= level <= 100:
