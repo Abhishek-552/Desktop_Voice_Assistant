@@ -1,4 +1,4 @@
-#🖥️ Desktop Voice Assistant – David
+# Desktop Voice Assistant – David
 David is a Python-powered desktop voice assistant that enhances user interaction with the computer using voice commands. Designed for productivity and convenience, David can perform a variety of tasks like launching applications, web browsing, playing music, controlling system settings, and more. It uses speech recognition and text-to-speech capabilities to respond in real time, offering hands-free control and ease of access.
 
 🛠️ Key Features:
