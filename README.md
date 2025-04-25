@@ -1,24 +1,27 @@
-# Desktop_Voice_Assistant
-🤖 David - Your Personal AI Voice Assistant
-David is a Python-based desktop AI assistant designed to make your computing experience more interactive and efficient. It listens to voice commands and performs tasks like opening websites, launching applications, searching Wikipedia, telling jokes, controlling system operations (lock, shutdown, restart), managing browser tabs, checking battery status, and more. Built with powerful Python libraries, David offers a simple yet dynamic way to interact with your PC using your voice. It’s ideal for productivity, accessibility, and everyday convenience.
+#🖥️ Desktop Voice Assistant – David
+David is a Python-powered desktop voice assistant that enhances user interaction with the computer using voice commands. Designed for productivity and convenience, David can perform a variety of tasks like launching applications, web browsing, playing music, controlling system settings, and more. It uses speech recognition and text-to-speech capabilities to respond in real time, offering hands-free control and ease of access.
 
-🛠️ Key Features
-🎤 Voice Command Recognition – Uses natural language processing to understand and respond to your commands.
+🛠️ Key Features:
+🎤 Voice Command Recognition – Understands and executes natural language commands using speech_recognition and pyttsx3.
 
-🔎 Wikipedia & Google Search – Get instant answers and information by just asking.
+🔍 Wikipedia & Google Search – Provides instant answers by searching the web and Wikipedia.
 
-🌐 Web Navigation – Open websites like YouTube, Google, Spotify, etc.
+🌐 Web Navigation – Opens websites like YouTube, Google, Chrome, and Spotify.
 
-🎵 Media Control – Play music, open music folders, and close media apps like VLC and Windows Media Player.
+🎵 Media Control – Plays music from a specific folder and manages media apps like VLC and Windows Media Player.
 
-🗒️ App Launcher – Quickly open Notepad, Calculator, Command Prompt, and Camera.
+🗒️ App Launcher – Opens tools like Notepad, Calculator, Command Prompt, Camera, and File Explorer.
 
-🔒 System Control – Lock screen, restart, or shut down your system via voice.
+🖥️ System Controls – Lock, restart, or shut down your PC through simple voice commands.
 
-🔋 Battery Status – Check the battery percentage and charging status.
+🔋 Battery & Brightness – Reports battery status and allows voice-controlled brightness adjustments.
 
-😄 Entertainment – Get fun jokes anytime using the pyjokes library.
+📑 Browser & Tab Control – Closes browser windows or individual tabs with hotkey automation.
 
-📑 Tab & Browser Management – Close Chrome/browser or a single browser tab with simple voice instructions.
+🔊 Volume Control – Increases, decreases, mutes, unmutes, or sets system volume precisely.
 
-🛑 Sleep Mode – Temporarily stop the assistant and resume anytime by saying "start listening".
+🛌 Sleep Mode – Assistant can pause operations and resume when prompted.
+
+😄 Entertainment – Tells random jokes using the pyjokes library.
+
+This assistant provides an intuitive and interactive desktop experience, ideal for multitaskers, accessibility users, and tech enthusiasts.
